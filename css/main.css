@@ -1,0 +1,49 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #2B3E50;
+}
+
+.dia {
+    flex-basis: 14.285%;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.lista-dias ul {
+    color: #df691a;
+}
+
+.lista-dias ul li {
+    flex-basis: 14.285%;
+}
+
+#antes,
+#despues {
+    cursor: pointer;
+    transition: all .3s ease-out;
+}
+
+#antes:hover,
+#despues:hover {
+    color: #4e5d6c;
+}
+
+.calendario-info {
+    background-color: #df691a;
+    font-size: 25px;
+}
+
+.activo {
+    background-color: #4e5d6c;
+    color: white;
+}
