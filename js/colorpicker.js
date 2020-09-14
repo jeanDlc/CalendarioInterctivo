@@ -34,7 +34,7 @@ pickr.on('save', (color, instance) => {
     //convertir el color a hexadecimal
     const colorHexa = color.toHEXA().toString();
     colorpicker.style.color = `${colorHexa}`;
-    console.log(color.toHEXA().toString());
+    //console.log(color.toHEXA().toString());
 }).on('swatchselect', (color, instance) => {
-    console.log('swatchselect', color, instance);
+    //console.log('swatchselect', color, instance);
 });

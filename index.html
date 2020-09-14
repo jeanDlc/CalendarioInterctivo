@@ -23,7 +23,7 @@
                     <div id="antes">
                         <i class="fas fa-arrow-circle-left"></i>
                     </div>
-                    <div class="info d-flex ml-5 mr-5">
+                    <div class="info d-flex ml-3 mr-3">
                         <div id="mes" class="mr-3">Enero </div>
                         <div id="anio">2018</div>
                     </div>
@@ -51,18 +51,27 @@
 
         </div>
         </main>
-        <section class="container mt-3 mb-3">
-            <h3 class="text-light text-uppercase">Tareas</h3>
-            <p class="text-light">Puedes guardar tareas en tu calendario <span class="font-weight-bold">y darles un color</span> </p>
+        <section class="secionNuevaTareaa container mt-3 mb-3 pb-4">
+            <h3 class="text-light">Nueva Tarea</h3>
+            <p class="text-light">Puedes crear tareas <span class="font-weight-bold">y darles un color</span> </p>
 
             <div class="d-flex">
                 <div class="color-picker"></div>
                 <form id="formTarea" class="d-flex justify-content-between ml-2">
                     <div class="mb-0 form-group">
-                        <input type="text" class="form-control mb-0" id="nombreTarea" placeholder="Nombre de tu tarea">
+                        <input type="text" required class="form-control mb-0" id="nombreTarea" placeholder="Nombre de tarea">
                     </div>
                     <button type="submit" class="btn ml-3 btnTarea">Agregar</button>
                 </form>
+            </div>
+        </section>
+        <section class="mb-4">
+            <div class="container">
+                <h3 class="text-light">Mis tareas</h3>
+                <p class="text-light">Selecciona una tarea y luego márcala en tu calendario</p>
+                <ul class="list-group lista-tareas">
+
+                </ul>
             </div>
         </section>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
