@@ -34,6 +34,7 @@ class Calendario {
             }
         }
         this.rellenarCabecera(fecha);
+        this.mostrarDiasMarcados();
     }
     cantidadDias(fecha) {
         //retorna la cantidad de dias del mes de 'fecha'
@@ -84,5 +85,43 @@ class Calendario {
     }
     limpiarCalendario() {
         document.querySelector('#dias').innerHTML = '';
+    }
+    mostrarDiasMarcados() {
+        if (fechasMarcadas.length > 0) {
+            const mes = fechaActual.getMonth();
+            const anio = fechaActual.getFullYear();
+            let bandera = 0;
+            let diasMarcados = [];
+            fechasMarcadas.forEach(fecha => {
+                if (fecha.dia.getFullYear() == anio && fecha.dia.getMonth() == mes) {
+                    bandera++;
+                    diasMarcados.push(fecha.dia.getDate());
+                }
+            });
+
+            if (bandera > 0) {
+                //existen tareas en este mes
+                const divDias = document.querySelector('#dias');
+                divDias.childNodes.forEach(divDia => {
+                    if (diasMarcados.includes(Number(divDia.textContent))) {
+                        divDia.classList.add('diaMarcado');
+                    }
+                });
+            }
+        }
+
+    }
+    mostrarTareasDelDia(divDiaClickeado) {
+        //revisar si existen tareas guardadas
+        if (fechasMarcadas.length > 0) {
+            //revisar si hay tareas ese día
+            if (divDiaClickeado.classList.contains('diaMarcado')) {
+                console.log('mostrar tareas');
+            } else {
+                mostrarMensaje('info', 'Vacío', 'Aquí no hay tareas, selecciona una tarea', 2000);
+            }
+        } else {
+            mostrarMensaje('info', 'Vacío', 'Aquí no hay tareas, selecciona una tarea', 2000);
+        }
     }
 }

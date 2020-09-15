@@ -16,7 +16,7 @@ body {
     flex-basis: 14.285%;
     text-align: center;
     margin-bottom: 15px;
-    padding: 10px;
+    padding: 12px 10px;
     transition: all .2s ease-out;
     color: #2B3E50;
 }
@@ -52,7 +52,7 @@ body {
 
 .activo {
     background-color: #4e5d6c;
-    color: white;
+    color: white!important;
 }
 
 
@@ -81,4 +81,33 @@ body {
 .lista-tareas li:hover {
     background-color: #e1e1e1;
     cursor: pointer;
+}
+
+.diaMarcado {
+    background-color: #df691a;
+    color: white;
+}
+
+.ventana-emergente {
+    background-color: #4e5d6c;
+    max-width: 900px;
+}
+
+.ventana-emergente p {
+    font-size: 25px;
+}
+
+.lista-emergente {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .lista-emergente {
+        width: 70%;
+    }
+}
+
+.lista-emergente li:hover {
+    cursor: pointer;
+    background-color: #e1e1e1;
 }
