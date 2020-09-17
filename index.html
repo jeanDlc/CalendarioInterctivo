@@ -52,6 +52,19 @@
 
         </div>
     </main>
+    <section>
+        <div class="ventana-emergente container p-3 pb-5 rounded-lg">
+            <p class="text-light text-center titulo-ventana-emergente"></p>
+            <div class="d-flex justify-content-center">
+                <ul class="list-group lista-emergente">
+
+                </ul>
+            </div>
+            <div id="minimizar">
+                <i class="fas fa-minus-circle"></i>
+            </div>
+        </div>
+    </section>
     <section class="secionNuevaTareaa container mt-3 mb-3 pb-4">
         <h3 class="text-light">Nueva Tarea</h3>
         <p class="text-light">Puedes crear tareas <span class="font-weight-bold">y darles un color</span> </p>
@@ -75,50 +88,7 @@
             </ul>
         </div>
     </section>
-    <section>
-        <div class="ventana-emergente container p-3 pb-5 rounded-lg">
-            <p class="text-light text-center">Tareas del día</p>
-            <div class="d-flex justify-content-center">
-                <ul class="list-group lista-emergente">
-                    <li data-id="0" class="list-group-item d-flex justify-content-between text-capitalize">
-                        Trabajo
-                        <div class="d-flex align-items-center">
-                            <span class="text-danger mr-2"><i class="fas fa-times"></i></span>
-                            <span class="badge" style="background-color:#007bff"><i class="fas fa-paint-brush" aria-hidden="true"></i></span>
-                        </div>
-                    </li>
-                    <li data-id="1" class="list-group-item d-flex justify-content-between text-capitalize">
-                        Viaje
-                        <div class="d-flex align-items-center">
-                            <span class="text-danger mr-2"><i class="fas fa-times"></i></span>
-                            <span class="badge" style="background-color:#ffc107"><i class="fas fa-paint-brush" aria-hidden="true"></i></span>
-                        </div>
 
-                    </li>
-                    <li data-id="2" class="list-group-item d-flex justify-content-between text-capitalize">
-                        Ocio
-                        <div class="d-flex align-items-center">
-                            <span class="text-danger mr-2"><i class="fas fa-times"></i></span>
-                            <span class="badge" style="background-color:rgb(223, 105, 26)"><i class="fas fa-paint-brush" aria-hidden="true"></i></span>
-                        </div>
-
-                    </li>
-                    <li data-id="3" class="list-group-item d-flex justify-content-between text-capitalize">
-                        exposición
-                        <div class="d-flex align-items-center">
-                            <span class="text-danger mr-2"><i class="fas fa-times"></i></span>
-                            <span class="badge" style="background-color:rgb(10, 219, 172)"><i class="fas fa-paint-brush" aria-hidden="true"></i></span>
-                        </div>
-
-                    </li>
-                    <li class="list-group-item bg-danger d-flex justify-content-between text-capitalize">
-                        <span class="text-light">Borrar todo</span> <span class="badge badge-light"><i class="fas fa-trash-alt"></i></span>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

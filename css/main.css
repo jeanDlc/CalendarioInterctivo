@@ -15,7 +15,7 @@ body {
 .dia {
     flex-basis: 14.285%;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     padding: 12px 10px;
     transition: all .2s ease-out;
     color: #2B3E50;
@@ -89,8 +89,11 @@ body {
 }
 
 .ventana-emergente {
+    display: none;
     background-color: #4e5d6c;
-    max-width: 900px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    position: relative;
 }
 
 .ventana-emergente p {
@@ -110,4 +113,19 @@ body {
 .lista-emergente li:hover {
     cursor: pointer;
     background-color: #e1e1e1;
+}
+
+#minimizar {
+    color: white;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 27px;
+    cursor: pointer;
+    transition: all .2s ease-out;
+}
+
+#minimizar:hover {
+    font-size: 30px;
+    opacity: .8;
 }

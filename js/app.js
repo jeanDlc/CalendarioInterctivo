@@ -38,6 +38,9 @@ btnAntes.addEventListener('click', () => {
 formTarea.addEventListener('submit', agregarTarea);
 ulTareas.addEventListener('click', activarTarea);
 divDias.addEventListener('click', seleccionarDia);
+document.querySelector('#minimizar').addEventListener('click', () => {
+    document.querySelector('.ventana-emergente').style.display = 'none';
+});
 //FUNCIONES********************************************************************************
 function agregarTarea(e) {
     e.preventDefault();
@@ -76,6 +79,7 @@ function cargarListaTareas() {
 }
 
 function activarTarea(e) {
+    desactivarTarea();
     const idSeleccionado = Number(e.target.getAttribute('data-id'));
     tareas.forEach((tarea) => {
         if (tarea.id === idSeleccionado) {
@@ -98,7 +102,7 @@ function desactivarTarea() {
 }
 
 function seleccionarDia(e) {
-    if (tareaSeleccionada) {
+    if (tareaSeleccionada && e.target.textContent != '') {
         guardarTareaEnCalendario(tareaSeleccionada, e.target);
     } else {
         miCalendario.mostrarTareasDelDia(e.target);
@@ -171,4 +175,41 @@ function mostrarMensaje(icono, titulo, mensaje, tiempo) {
         text: mensaje,
         timer: tiempo
     })
+}
+//retorna la lista de tareas de un día en específico
+//resibe como parámetro el div del día clickeado
+function obtenerTareasDelDiv(divClickeado) {
+    //obtener la fecha actual del día clickeado
+    const fechaDelDiv = obtenerFechaDeUnDiv(divClickeado);
+    let ids;
+    //obtener lis ids de las tareas que hay en esa fecha
+    fechasMarcadas.forEach(fechaMarcada => {
+        if (fechaMarcada.dia.getDate() === fechaDelDiv.dia && fechaMarcada.dia.getMonth() === fechaDelDiv.mes && fechaMarcada.dia.getFullYear() === fechaDelDiv.anio) {
+            ids = fechaMarcada.idTareas;
+        }
+    });
+    const tareasDelDia = [];
+    if (ids.length > 0) {
+        //si hay tareas , entonces retornar la lista de tareas de ese día
+        tareas.forEach(tarea => {
+            if (ids.includes(tarea.id)) {
+                tareasDelDia.push(tarea);
+            }
+        });
+        //retorna un array con las tareas de ese día
+        return tareasDelDia;
+    } else {
+        //sino, retornar un array vacío
+        return [];
+    }
+}
+//retorna un objeto con la informacion del día de un div
+function obtenerFechaDeUnDiv(divDia) {
+    //el objeto tiene la información de la fecha de un div del calendario
+    return {
+        anio: fechaActual.getFullYear(),
+        mes: fechaActual.getMonth(),
+        dia: Number(divDia.textContent),
+        nombreMes: meses[fechaActual.getMonth()]
+    }
 }
