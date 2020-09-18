@@ -112,7 +112,7 @@ body {
 
 .lista-emergente li:hover {
     cursor: pointer;
-    background-color: #e1e1e1;
+    filter: grayscale(0.2);
 }
 
 #minimizar {
@@ -128,4 +128,13 @@ body {
 #minimizar:hover {
     font-size: 30px;
     opacity: .8;
+}
+
+.eliminarTarea {
+    transition: all .2s ease-out;
+    font-size: 25px;
+}
+
+.eliminarTarea:hover {
+    transform: scale(1.5);
 }

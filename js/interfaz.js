@@ -97,11 +97,11 @@ class Interfaz {
                         //creando el contenido de cada li
                         const li = document.createElement('li');
                         li.setAttribute('data-tareaID', `${tarea.id}`);
-                        li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'text-capitalize');
+                        li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'text-capitalize', 'borrarTodo');
                         li.innerHTML = `
                             ${tarea.nombre}
                             <div class="d-flex align-items-center">
-                                <span class="text-danger mr-2"><i class="fas fa-times"></i></span>
+                            <i class="fas fa-times eliminarTarea text-danger mr-4"></i>
                                 <span class="badge" style="background-color:${tarea.color}"><i class="fas fa-paint-brush" aria-hidden="true"></i></span>
                             </div>
                         `;
@@ -110,10 +110,11 @@ class Interfaz {
                     });
                     //agregar el último li que es para borrar todo
                     const liBorrar = document.createElement('li');
-                    liBorrar.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'text-capitalize', 'bg-danger');
-                    liBorrar.innerHTML = `
-                        <span class="text-light">Borrar todo</span> <span class="badge badge-light"><i class="fas fa-trash-alt"></i></span>
-                    `;
+                    liBorrar.classList.add('list-group-item', 'text-capitalize', 'bg-danger', 'eliminarAllTareas', 'text-light', 'text-right');
+                    liBorrar.setAttribute('data-dia', `${fechaDelDiv.dia}`);
+                    liBorrar.setAttribute('data-mes', `${fechaDelDiv.mes}`);
+                    liBorrar.setAttribute('data-anio', `${fechaDelDiv.anio}`);
+                    liBorrar.textContent = 'Borrar Todo';
                     listaEmergente.appendChild(liBorrar);
                 } else {
                     //mostrar un mensaje de que no hay tareas
@@ -133,7 +134,12 @@ class Interfaz {
             icon: icono,
             title: titulo,
             text: mensaje,
-            timer: tiempo
+            timer: tiempo,
+            confirmButtonColor: '#2B3E50',
         })
     }
+    ocultarVentanEmergente() {
+        document.querySelector('.ventana-emergente').style.display = 'none';
+    }
+
 }

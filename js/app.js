@@ -34,7 +34,7 @@ btnDespues.addEventListener('click', () => {
 
 });
 btnAntes.addEventListener('click', () => {
-    miCalendario.cargarFechaAnterior(fechaActual)
+    miCalendario.cargarFechaAnterior(fechaActual);
 });
 formTarea.addEventListener('submit', agregarTarea);
 ulTareas.addEventListener('click', (e) => {
@@ -42,8 +42,9 @@ ulTareas.addEventListener('click', (e) => {
 });
 divDias.addEventListener('click', seleccionarDia);
 document.querySelector('#minimizar').addEventListener('click', () => {
-    document.querySelector('.ventana-emergente').style.display = 'none';
+    miInterfaz.ocultarVentanEmergente();
 });
+document.querySelector('.lista-emergente').addEventListener('click', eliminar);
 //FUNCIONES********************************************************************************
 function agregarTarea(e) {
     e.preventDefault();
@@ -161,4 +162,88 @@ function obtenerFechaDeUnDiv(divDia) {
         dia: Number(divDia.textContent),
         nombreMes: meses[fechaActual.getMonth()]
     }
+}
+
+function eliminar(e) {
+    //eliminar las tareas de un determinado día
+    //2 opciones: eliminar una tarea o eliminar todas por completo
+    if (e.target.classList.contains('eliminarTarea')) {
+        //eliminar una tarea
+        //preguntar si está seguro
+        Swal.fire({
+            title: 'Estás seguro?',
+            text: "Se borrará la tarea!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#2B3E50',
+            cancelButtonColor: '#dc3545',
+            confirmButtonText: 'Sí, borrar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //eliminar la tarea
+                borrarUnaTarea(e.target.parentElement.parentElement);
+            }
+        })
+    } else if (e.target.classList.contains('eliminarAllTareas')) {
+        //eliminar todas las tareas
+        //preguntar si está seguro
+        Swal.fire({
+            title: 'Estás seguro?',
+            text: "Se borrarán todas las tareas!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#2B3E50',
+            cancelButtonColor: '#dc3545',
+            confirmButtonText: 'Sí, borrar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //eliminar todas las tareas
+                borrarTodasLasTareas(e.target);
+            }
+        })
+    }
+}
+//eliminar una tarea de una fecha específica
+function borrarUnaTarea(div) {
+    //el div contiene el id de la tarea a eliminar
+    const idTarea = Number(div.getAttribute('data-tareaid'));
+    //este li contiene la información del día del cual se borrará la tarea    
+    const liBorrar = document.querySelector('.eliminarAllTareas');
+    const dia = Number(liBorrar.getAttribute('data-dia'));
+    const mes = Number(liBorrar.getAttribute('data-mes'));
+    const anio = Number(liBorrar.getAttribute('data-anio'));
+    fechasMarcadas.forEach((fechaMarcada, index) => {
+        if (fechaMarcada.dia.getDate() === dia && fechaMarcada.dia.getMonth() === mes && fechaMarcada.dia.getFullYear() === anio) {
+            //borrar la fecha del array que contiene todas las fechasMarcadas
+            if (fechasMarcadas[index].idTareas.length === 1) {
+                //si solo queda una tarea, entonces eliminar todas las tareas de esa fecha
+                borrarTodasLasTareas(liBorrar);
+            } else if (fechasMarcadas[index].idTareas.length > 1) {
+                //si hay más de una tarea, entonces
+                //eliminar esa única tarea de la fecha en cuestión
+                const indice = fechasMarcadas[index].idTareas.indexOf(idTarea);
+                fechasMarcadas[index].idTareas.splice(indice, 1);
+                //eliminar la tarea (li) del dom
+                div.remove();
+            }
+        }
+    });
+}
+//elimina todas las tareas de una determinada fecha
+function borrarTodasLasTareas(div) {
+    const dia = Number(div.getAttribute('data-dia'));
+    const mes = Number(div.getAttribute('data-mes'));
+    const anio = Number(div.getAttribute('data-anio'));
+    //buscar la fecha para borrarla del array de las fechasMarcadas
+    fechasMarcadas.forEach((fechaMarcada, index) => {
+        if (fechaMarcada.dia.getDate() === dia && fechaMarcada.dia.getMonth() === mes && fechaMarcada.dia.getFullYear() === anio) {
+            //borrar la fecha del array que contiene todas las fechasMarcadas
+            fechasMarcadas.splice(index, 1);
+        }
+    });
+    //volver a cargar el calendario
+    miCalendario.cargarDias(fechaActual);
+    //ocultar la lista de tareas
+    miInterfaz.ocultarVentanEmergente();
+
 }
